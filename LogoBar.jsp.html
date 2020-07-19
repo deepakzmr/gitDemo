@@ -1,0 +1,152 @@
+
+
+<html>
+<head>
+	
+		<link rel="stylesheet" type="text/css" href="..//Themes//HR Purple/css/kompa.css">
+		<script language="javascript" src="../javascript/pamfunctions.js"></script>
+		<script language="javascript" src="../javascript/jsSet.js"></script>
+	
+	<script>
+
+		var Fen = new Object();
+		var Fens = new Array();
+		var options = {};
+
+		function gotoHome()
+		{
+			var i=0;
+			//alert(Fens.length);
+			if(Fens.length > 0)
+			{
+			//	alert("inside if of fens");
+				var ln = Fens.length;
+
+				while(ln > 0)
+				{
+			//	alert("inside while of fens=="+Fens[i]);
+					if(Fens[i] != "")
+					{
+						Fens[i].close();
+						Fens[i]="";
+					}
+					ln=ln-1;
+					i=i+1;
+				}
+			}
+
+			top.frames['divframe'].frames['windowframe'].frames['nav'].document.forms[0].popup_count.value="0";
+
+			//top.frames['divframe'].frames['windowframe'].frames['contentframe'].document.location.href='EmptyScreen.jsp';
+			top.frames['divframe'].frames['windowframe'].frames['contentframe'].document.location.href='ContactUs.jsp';
+			top.frames['divframe'].frames['windowframe'].frames['titleframe'].document.location.href='Blank.jsp';
+			top.frames['divframe'].frames['windowframe'].frames['bottomframe'].location.href='Blank.jsp';
+			top.frames['divframe'].frames['windowframe'].frames['nav'].location.href='Tree.jsp';
+
+		}
+
+		function signOut()
+		{
+			//If there is no data to save then it signout directly
+			if (top.frames['divframe'].frames['windowframe'].frames['contentframe'].frmdetail==null ||
+				top.frames['divframe'].frames['windowframe'].frames['contentframe'].initFunction('unload', 'changeLocation()'))
+				doSignOut();
+
+			/*Added by Vishal Banker
+			GenerateXmlUsingAjax("","isLogout","com.uffizio.tools.projectmanager.GenerateXmlUsingAjax","isLogout");*/
+		}
+		function doSignOut()
+		{
+		//	document.forms[0].target = "_top";
+			document.forms[0].submit();
+		}
+		function hideTree(obj)
+		{
+			var sImage = obj.src;
+			if(sImage.indexOf("leftmove") != -1)
+			{
+				top.frames['divframe'].frames['windowframe'].document.getElementById("nav").style.display = "none";
+				top.frames['divframe'].frames['windowframe'].document.getElementById("main_container").setAttribute("cols","0%,100%");
+				//top.frames['divframe'].frames['windowframe'].document.getElementById("bottom_container").setAttribute("cols","4%,96%");
+				top.frames['divframe'].frames['windowframe'].frames['controlbar'].document.getElementById("icon_home1").style.display="none";
+				top.frames['divframe'].frames['windowframe'].frames['controlbar'].document.getElementById("icon_help1").style.display="none";
+				top.frames['divframe'].frames['windowframe'].frames['controlbar'].document.getElementById("icon_logoff1").style.display="none";
+				obj.src = "../images/black/rightmove.png";
+				obj.title = "Show Tree";
+			}
+			else
+			{
+				top.frames['divframe'].frames['windowframe'].document.getElementById("nav").style.display = "";
+				top.frames['divframe'].frames['windowframe'].document.getElementById("main_container").setAttribute("cols","16%,84%");
+				//top.frames['divframe'].frames['windowframe'].document.getElementById("bottom_container").setAttribute("cols","17%,83%");
+				top.frames['divframe'].frames['windowframe'].frames['controlbar'].document.getElementById("icon_home1").style.display="";
+				top.frames['divframe'].frames['windowframe'].frames['controlbar'].document.getElementById("icon_help1").style.display="";
+				top.frames['divframe'].frames['windowframe'].frames['controlbar'].document.getElementById("icon_logoff1").style.display="";
+				obj.src = "../images/black/leftmove.png";
+				obj.title = "Hide Tree";
+			}
+		}
+	</script>
+	<style>
+
+		#img
+		{
+			margin: auto 10;
+	    	float: right;
+	    	cursor: pointer;
+	    	/* Then add individual styles for the images */
+	 	}
+	 	body , html
+	 	{
+			height : 100%;
+			width	:100%;
+		}
+	</style>
+</head>
+<body class="left_bg" scrolling='no'>
+<form name="myform" method="post" action="../jsp/Signout.jsp" scrolling='no'>
+<div id="container" style="valign:middle;height:99%;width:100%;border-bottom: 1px solid #A9CFEA;">
+		<!--<table border='0' bordercolor="white" cellspacing='0' cellpadding='0' scrolling='no' style="width:100%; height:100%; ">
+			<tr>
+				<td align="center">
+					<img id="icon_home1" width="34" height="34" onClick="gotoHome()" title="Contact Us" src="../images/black/contact_us.png" style="cursor: pointer;"/>
+				</td>
+				<td align="center">
+					<img id="icon_help1" width="34" height="34" onClick="helpFunction()" title="Help" src="../images/black/help.png" style="cursor: pointer;"/>
+				</td>
+				<td align="center">
+					<img id="icon_logoff1" width="34" height="34" onClick="signOut()" title="Logout" src="../images/black/logout.png" style="cursor: pointer;"/>
+				</td>
+				<td align="center">
+					<img id="left_move" width="34" height="34" onClick="hideTree(this)" title="Hide Tree" src="../images/black/leftmove.png" style="cursor: pointer;"/>
+				</td>
+			</tr>
+		</table>-->
+	<div style="height:10%;width:100%; border-style: none; border-color: silver;"  align="center"><!---->
+		<table border='0' bordercolor="yellow" style="width:100%; height:100%; ">
+			<tr>
+				<td align="center" align="right">
+					<div id="company" title="Home" style="position:absolute;left:10px;font-size: 28px;font-weight: lighter;padding: 3px;cursor:pointer;" onclick="top.frames['divframe'].OpenHome();">Home</div><img style="position: relative;top: 5px;left: 0px;cursor:pointer;margin: 4px;" src="../images/logo/home.png" width="28px" height="28px" onclick="top.frames['divframe'].OpenHome();"/>
+					<!--<div id="Home" title="Home" style="position:absolute;right:5px;"><img style="cursor:pointer;margin: 4px;" src="../images/logo/home.png" width="36px" height="36px" onclick="top.frames['divframe'].OpenHome();"/></div>-->
+				</td>
+			</tr>
+		</table>
+	</div><!---->
+	<!--<div id="nav_div">
+		<a id="icon_home1" class="navItem">
+			<img id="icon_home11" width="34" height="34" onClick="gotoHome()" title="Contact Us" src="../images/black/contact_us.png" style="cursor: pointer;"/>
+		</a>
+		<a id="icon_help1" class="navItem">
+			<img id="icon_help11" width="34" height="34" onClick="helpFunction()" title="Help" src="../images/black/help.png" style="cursor: pointer;"/>
+		</a>
+		<a id="icon_logoff1" class="navItem">
+			<img id="icon_logoff11" width="34" height="34" onClick="signOut()" title="Logout" src="../images/black/logout.png" style="cursor: pointer;"/>
+		</a>
+		<a id="left_move" class="navItem">
+			<img id="left_move11" width="34" height="34" onClick="hideTree(this)" title="Hide Tree" src="../images/black/leftmove.png" style="cursor: pointer;"/>
+		</a>
+	</div>-->
+</div>
+</form>
+</body>
+</html>
